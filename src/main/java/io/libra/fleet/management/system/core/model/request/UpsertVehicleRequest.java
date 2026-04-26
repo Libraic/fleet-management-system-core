@@ -5,6 +5,8 @@ public record UpsertVehicleRequest(
     String make,
     String model,
     String registrationNumber,
-    Integer mileage
+    Integer mileage,
+    Integer lastServiceMileage,
+    Integer serviceIntervalMileage
 ) {
 }

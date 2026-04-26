@@ -38,3 +38,9 @@ COMMENT ON COLUMN t_vehicles.mileage             IS 'Current vehicle mileage mea
 COMMENT ON COLUMN t_vehicles.created_at          IS 'Timestamp when the vehicle record was created.';
 COMMENT ON COLUMN t_vehicles.last_updated_at     IS 'Timestamp of the last update to the vehicle record.';
 COMMENT ON COLUMN t_vehicles.deleted_at          IS 'Timestamp indicating soft deletion. NULL means the record is active.';
+
+-- changeset libra:003
+-- comment: Create the last_service_mileage and service_interval_mileage columns in the t_vehicles table
+ALTER TABLE t_vehicles
+    ADD COLUMN last_service_mileage     INTEGER,
+    ADD COLUMN service_interval_mileage INTEGER;

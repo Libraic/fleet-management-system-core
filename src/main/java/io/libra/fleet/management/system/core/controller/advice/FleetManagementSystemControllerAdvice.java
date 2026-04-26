@@ -1,4 +1,4 @@
-package io.libra.fleet.management.system.core.controller;
+package io.libra.fleet.management.system.core.controller.advice;
 
 import static io.libra.fleet.management.system.core.constants.ErrorConstants.INTERNAL_SERVER_ERROR_MESSAGE;
 import static io.libra.fleet.management.system.core.model.response.common.ErrorType.GENERAL;

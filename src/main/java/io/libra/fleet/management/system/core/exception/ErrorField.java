@@ -10,7 +10,9 @@ public enum ErrorField {
     MAKE("make"),
     MODEL("model"),
     REGISTRATION_NUMBER("registrationNumber"),
-    MILEAGE("mileage");
+    MILEAGE("mileage"),
+    LAST_SERVICE_MILEAGE("lastServiceMileage"),
+    SERVICE_INTERVAL_MILEAGE("serviceIntervalMileage");
 
     private final String name;
 }

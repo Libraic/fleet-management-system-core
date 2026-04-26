@@ -8,6 +8,8 @@ public record GetVehicleResponse(
     String make,
     String model,
     int mileage,
-    String registrationNumber
+    String registrationNumber,
+    int lastServiceMileage,
+    int serviceIntervalMileage
 ) {
 }

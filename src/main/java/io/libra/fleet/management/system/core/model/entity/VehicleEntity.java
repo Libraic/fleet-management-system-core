@@ -43,6 +43,12 @@ public class VehicleEntity extends Auditable {
     @Column
     private Integer mileage;
 
+    @Column
+    private Integer lastServiceMileage;
+
+    @Column
+    private Integer serviceIntervalMileage;
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

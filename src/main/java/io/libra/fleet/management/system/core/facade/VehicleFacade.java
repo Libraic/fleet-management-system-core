@@ -1,7 +1,7 @@
 package io.libra.fleet.management.system.core.facade;
 
 import java.util.List;
-import java.util.UUID;
+import io.libra.fleet.management.system.core.mapper.VehicleMapper;
 import io.libra.fleet.management.system.core.model.entity.VehicleEntity;
 import io.libra.fleet.management.system.core.model.request.UpsertVehicleRequest;
 import io.libra.fleet.management.system.core.model.response.GetVehicleResponse;
@@ -18,35 +18,23 @@ public class VehicleFacade {
 
     private final VehicleValidationService vehicleValidationService;
     private final VehicleService vehicleService;
+    private final VehicleMapper vehicleMapper;
 
     public UpsertVehicleResponse upsertVehicle(UpsertVehicleRequest request) {
         vehicleValidationService.validateVehicle(request);
 
-        VehicleEntity vehicleEntity = VehicleEntity.builder()
-            .uuid(UUID.randomUUID().toString())
-            .make(request.make())
-            .model(request.model())
-            .registrationNumber(request.registrationNumber())
-            .mileage(request.mileage())
-            .build();
+        VehicleEntity vehicleEntity = vehicleMapper.fromUpsertRequestToEntity(request);
 
         vehicleService.persistVehicle(vehicleEntity);
-        return UpsertVehicleResponse.builder()
-            .id(vehicleEntity.getUuid())
-            .build();
+
+        return vehicleMapper.fromEntityToUpsertResponse(vehicleEntity);
     }
 
     public PageResponse<GetVehicleResponse> getVehicles(int page) {
         List<VehicleEntity> vehicles = vehicleService.getAllVehicles(page);
         List<GetVehicleResponse> getVehicleResponseList = vehicles.stream()
-            .map(vehicleEntity -> GetVehicleResponse.builder()
-                .id(vehicleEntity.getUuid())
-                .make(vehicleEntity.getMake())
-                .model(vehicleEntity.getModel())
-                .registrationNumber(vehicleEntity.getRegistrationNumber())
-                .mileage(vehicleEntity.getMileage())
-                .build()
-            ).toList();
+            .map(vehicleMapper::fromEntityToGetResponse)
+            .toList();
         int size = vehicles.size();
         long totalVehicles = vehicleService.countVehicles();
         int totalPages = (int) Math.ceil((double) totalVehicles / size);
