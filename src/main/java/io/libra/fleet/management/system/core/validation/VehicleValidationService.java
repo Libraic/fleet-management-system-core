@@ -10,6 +10,7 @@ import static io.libra.fleet.management.system.core.constants.VehicleConstants.V
 
 import java.util.HashMap;
 import java.util.Map;
+
 import io.libra.fleet.management.system.core.exception.ErrorField;
 import io.libra.fleet.management.system.core.exception.FleetManagementSystemValidationException;
 import io.libra.fleet.management.system.core.model.request.UpsertVehicleRequest;
@@ -48,15 +49,15 @@ public class VehicleValidationService {
         }
 
         if (request.lastServiceMileage() == null) {
-            errorFields.put(ErrorField.MILEAGE.getName(), VEHICLE_LAST_SERVICE_MILEAGE_REQUIRED_MESSAGE);
+            errorFields.put(ErrorField.LAST_SERVICE_MILEAGE.getName(), VEHICLE_LAST_SERVICE_MILEAGE_REQUIRED_MESSAGE);
         } else if (request.lastServiceMileage() < 0) {
-            errorFields.put(ErrorField.MILEAGE.getName(), VEHICLE_MILEAGE_INVALID_MESSAGE);
+            errorFields.put(ErrorField.LAST_SERVICE_MILEAGE.getName(), VEHICLE_MILEAGE_INVALID_MESSAGE);
         }
 
         if (request.serviceIntervalMileage() == null) {
-            errorFields.put(ErrorField.MILEAGE.getName(), VEHICLE_SERVICE_INTERVAL_MILEAGE_REQUIRED_MESSAGE);
+            errorFields.put(ErrorField.SERVICE_INTERVAL_MILEAGE.getName(), VEHICLE_SERVICE_INTERVAL_MILEAGE_REQUIRED_MESSAGE);
         } else if (request.serviceIntervalMileage() < 0) {
-            errorFields.put(ErrorField.MILEAGE.getName(), VEHICLE_MILEAGE_INVALID_MESSAGE);
+            errorFields.put(ErrorField.SERVICE_INTERVAL_MILEAGE.getName(), VEHICLE_MILEAGE_INVALID_MESSAGE);
         }
 
         if (!errorFields.isEmpty()) {

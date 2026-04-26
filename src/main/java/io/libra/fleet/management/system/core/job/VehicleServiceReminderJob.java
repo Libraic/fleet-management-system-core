@@ -17,8 +17,7 @@ public class VehicleServiceReminderJob {
     private final VehicleRepository vehicleRepository;
     private final VehicleServiceReminderEmailService emailService;
 
-//    @Scheduled(cron = "0 0 7 * * *", zone = "Europe/Chisinau")
-    @Scheduled(cron = "0 * * * * *", zone = "Europe/Chisinau")
+    @Scheduled(cron = "0 0 7 * * *", zone = "Europe/Chisinau")
     public void sendDailyServiceReminder() {
         log.info("Starting daily vehicle service reminder job");
 
